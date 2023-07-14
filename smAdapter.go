@@ -20,11 +20,11 @@ type VMAdapter struct {
 	httpClient    *http.Client
 }
 
-type SMStorageAdapter interface {
+type VMStorageAdapter interface {
 	ExecuteVictoriaQuery(ctx context.Context, query string, customHeaders map[string]string, ignoreNullValues bool, metricName string, accountID int) (float64, error)
 }
 
-func NewSMStorageAdapter(serverAddress string, isPrometheus bool, client *http.Client, logger logr.Logger) SMStorageAdapter {
+func NewVMStorageAdapter(serverAddress string, isPrometheus bool, client *http.Client, logger logr.Logger) VMStorageAdapter {
 	return &VMAdapter{
 		serverAddress: serverAddress,
 		isPrometheus:  isPrometheus,
